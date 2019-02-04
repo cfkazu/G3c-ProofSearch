@@ -26,14 +26,17 @@ namespace G3c
         }
         public void OutPut(int Depth)
         {
-            Console.WriteLine(result+Depth);
-            if (Figures.Count > 1) { Console.WriteLine(Figures.Count + "個の場合分け"); }
-            foreach (var  i in Figures)
+            Console.WriteLine(result + Depth);
+            if (Figures.Count > 1) { Console.WriteLine(Figures.Count + "個の場合分け({0})", Depth); }
+            for (int i = 0; i < Figures.Count; i++)
             {
-                i.OutPut(Depth+1);
+                if (Figures.Count > 1) { Console.Write(i + ":"); }
+                Figures[i].OutPut( Depth + 1);
             }
-            if(Figures.Count()==0){ Console.WriteLine("-"); }
-            
+
+            if (Figures.Count > 1) { Console.WriteLine(Figures.Count + "個の場合分け終了({0})", Depth); }
+            if (Figures.Count() == 0) { Console.WriteLine("-"); }
+
         }
 
         public void OutPut(StreamWriter writer,int Depth)
@@ -42,7 +45,7 @@ namespace G3c
             if (Figures.Count > 1) { writer.WriteLine(Figures.Count + "個の場合分け({0})",Depth); }
             for (int i = 0;  i< Figures.Count; i++)
             {
-                if (Figures.Count > 1) { Console.Write(i + ":"); }
+                if (Figures.Count > 1) { writer.Write(i + ":"); }
                 Figures[i].OutPut(writer, Depth + 1);
             }
           
